@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorDataParser", "SensorDataParser\SensorDataParser.csproj", "{C2425D5D-F52E-4148-B0A5-1484729BAC36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2425D5D-F52E-4148-B0A5-1484729BAC36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2425D5D-F52E-4148-B0A5-1484729BAC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2425D5D-F52E-4148-B0A5-1484729BAC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2425D5D-F52E-4148-B0A5-1484729BAC36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93E4B8D6-F3DF-46EB-AC69-0DD9CB9BBDCF}
+	EndGlobalSection
+EndGlobal
