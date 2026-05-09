@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using SensorDataParser.Forms;
 using SensorDataParser.Models;
 using SensorDataParser.Parser;
 using System.Reflection;
@@ -104,6 +105,12 @@ namespace SensorDataParser
                 MessageBox.Show($"Произошла ошибка при инициализации приложения: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
+        }
+
+        private void btnOpenAnalysis_Click(object sender, EventArgs e)
+        {
+            var analysisForm = new AnalysisForm(_configuration);
+            analysisForm.Show();
         }
     }
 }

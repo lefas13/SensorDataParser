@@ -30,27 +30,44 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             mainButton = new Button();
+            btnOpenAnalysis = new Button();
             SuspendLayout();
             // 
             // mainButton
             // 
-            mainButton.Dock = DockStyle.Fill;
+            mainButton.Dock = DockStyle.Top;
             mainButton.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point);
             mainButton.Location = new Point(0, 0);
+            mainButton.Margin = new Padding(3, 4, 3, 4);
             mainButton.Name = "mainButton";
-            mainButton.Size = new Size(800, 450);
+            mainButton.Size = new Size(914, 290);
             mainButton.TabIndex = 0;
             mainButton.Text = "Выбрать файл(ы) для загрузки в базу данных";
             mainButton.UseVisualStyleBackColor = true;
             mainButton.Click += CultivationFilesButtonClick;
             // 
+            // btnOpenAnalysis
+            // 
+            btnOpenAnalysis.Dock = DockStyle.Top;
+            btnOpenAnalysis.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnOpenAnalysis.Location = new Point(0, 290);
+            btnOpenAnalysis.Margin = new Padding(3, 4, 3, 4);
+            btnOpenAnalysis.Name = "btnOpenAnalysis";
+            btnOpenAnalysis.Size = new Size(914, 290);
+            btnOpenAnalysis.TabIndex = 1;
+            btnOpenAnalysis.Text = "Анализ данных (Графики)";
+            btnOpenAnalysis.UseVisualStyleBackColor = true;
+            btnOpenAnalysis.Click += btnOpenAnalysis_Click;
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(btnOpenAnalysis);
             Controls.Add(mainButton);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainForm";
             Text = "Обрабочик xml-документов";
             Load += MainFormLoad;
@@ -60,5 +77,6 @@
         #endregion
 
         private Button mainButton;
+        private Button btnOpenAnalysis;
     }
 }

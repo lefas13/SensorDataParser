@@ -186,5 +186,37 @@ namespace SensorDataParser.Parser
 
             return "NVARCHAR(MAX)";
         }
+
+        public List<T> GetAll()
+        {
+            var entities = new List<T>();
+            var connectionString = _configuration.GetConnectionString("MsSqlConnection")!;
+            var database = _configuration.GetSection("Database").Value!;
+
+            using var connection = new SqlConnection(connectionString);
+            connection.Open();
+            connection.ChangeDatabase(database);
+
+            var properties = typeof(T).GetProperties().Where(p => p.CanWrite).ToList();
+            var sql = $"SELECT * FROM {_tableName}";
+
+            using var command = new SqlCommand(sql, connection);
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var entity = new T();
+                foreach (var prop in properties)
+                {
+                    var value = reader[prop.Name];
+                    if (value != DBNull.Value)
+                    {
+                        prop.SetValue(entity, value);
+                    }
+                }
+                entities.Add(entity);
+            }
+            return entities;
+        }
     }
 }
