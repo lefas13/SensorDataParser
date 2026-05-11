@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using SensorDataParser.Models;
-using System.Windows.Forms.DataVisualization.Charting;
+using System.Globalization;
 
 namespace SensorDataParser.Parser
 {
@@ -20,7 +19,7 @@ namespace SensorDataParser.Parser
             _configuration = configuration;
         }
 
-        // Получаем историю вибрации для конкретной точки замера
+        // История вибрации для конкретной точки замера
         public List<TrendPoint> GetTrendData(int pointId)
         {
             var result = new List<TrendPoint>();
@@ -31,14 +30,12 @@ namespace SensorDataParser.Parser
             connection.Open();
             connection.ChangeDatabase(database);
 
-            // ИСПРАВЛЕННЫЙ ЗАПРОС: Record -> Schedule -> Axis -> Point
             string sql = @"
         SELECT R.Date, R.RMS 
         FROM Record R
         JOIN Schedule S ON R.SScheduleID = S.Id
         JOIN Axis A ON S.SAxisID = A.Id
         WHERE A.SPointID = @PointId
-        AND R.RMS IS NOT NULL
         ORDER BY R.Date ASC";
 
             using var command = new SqlCommand(sql, connection);
@@ -47,13 +44,23 @@ namespace SensorDataParser.Parser
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                if (DateTime.TryParse(reader["Date"].ToString(), out DateTime dt))
+                string rawDate = reader["Date"].ToString() ?? "";
+                string rawRms = reader["RMS"].ToString() ?? "";
+
+                DateTime dt = DateTime.Now;
+                if (rawDate.Length >= 19)
                 {
-                    result.Add(new TrendPoint
-                    {
-                        Date = dt,
-                        RMS = Convert.ToDouble(reader["RMS"])
-                    });
+                    string cleanDate = rawDate.Substring(0, 19);
+                    DateTime.TryParseExact(cleanDate, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+                }
+
+                double rms = 0;
+                rawRms = rawRms.Replace(',', '.');
+                double.TryParse(rawRms, NumberStyles.Any, CultureInfo.InvariantCulture, out rms);
+
+                if (rms > 0)
+                {
+                    result.Add(new TrendPoint { Date = dt, RMS = rms });
                 }
             }
             return result;

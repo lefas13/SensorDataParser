@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnalysisForm));
             splitContainer1 = new SplitContainer();
             tvHierarchy = new TreeView();
             chartTrend = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -68,17 +69,17 @@
             // 
             // chartTrend
             // 
-            chartArea2.Name = "ChartArea1";
-            chartTrend.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            chartTrend.ChartAreas.Add(chartArea1);
             chartTrend.Dock = DockStyle.Fill;
-            legend2.Name = "Legend1";
-            chartTrend.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            chartTrend.Legends.Add(legend1);
             chartTrend.Location = new Point(0, 0);
             chartTrend.Name = "chartTrend";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartTrend.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartTrend.Series.Add(series1);
             chartTrend.Size = new Size(530, 450);
             chartTrend.TabIndex = 0;
             chartTrend.Text = "chart1";
@@ -89,6 +90,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AnalysisForm";
             Text = "AnalysisForm";
             splitContainer1.Panel1.ResumeLayout(false);
